@@ -14,7 +14,7 @@ interface SkitBlockProps {
 const SkitBlock: React.FC<SkitBlockProps> = ({ skits, blockIndex }) => {
   return (
     <div className="my-4 p-4 border rounded shadow-lg text-black">
-      <h2 className="text-2xl font-bold mb-2">Skit Block {blockIndex + 1}</h2>
+      <h2 className="text-2xl font-bold mb-2 p-2">Skit Block {blockIndex + 1}</h2>
       <table className="min-w-full bg-white">
         <thead>
           <tr>
@@ -26,7 +26,7 @@ const SkitBlock: React.FC<SkitBlockProps> = ({ skits, blockIndex }) => {
           {skits.map((skit, index) => (
             <tr key={index} className="border-t">
               <td className="py-2 border-b p-2">{skit.skitName}</td>
-              <td className="py-2 border-b">
+              <td className="py-2 border-b p-2">
                 {Object.entries(skit)
                   .filter(([key]) => key.startsWith('Person'))
                   .map(([key, value]) => value)
