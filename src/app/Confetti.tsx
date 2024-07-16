@@ -6,8 +6,8 @@ function ConfettiComponent() {
   const { width, height } = useWindowSize()
   return (
     <Confetti
-      width={width}
-      height={height}
+      width={width * 2}
+      height={height * 2}
     />
   )
 }

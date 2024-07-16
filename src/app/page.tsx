@@ -54,7 +54,6 @@ function Page() {
       {confetti && <ConfettiComponent />}
       <h1 className="text-5xl font-bold mb-4 text-blue-500">Fish Camp Skit Block Creator</h1>
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
-        
         <input
           type="file"
           accept=".csv"
@@ -63,11 +62,18 @@ function Page() {
         />
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-800"
         >
           Upload CSV
         </button>
         <p className="mt-4 text-xs text-gray-500">Please upload a CSV file with the first column as the skit name and the rest of the columns as participants. No header is needed.</p>
+        <a
+          href="/example.csv"
+          download
+          className="mt-4 text-xs text-blue-500 hover:text-blue-800"
+        >
+          Download example CSV
+        </a>
       </div>
       <div className="mt-4">
           Created by Adam Sulemanji
