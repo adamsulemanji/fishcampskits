@@ -1,6 +1,5 @@
-// src/pages/api/parse.ts
-
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { parse } from 'papaparse';
 
 type Skit = { skitName: string, [key: string]: string };
 
@@ -45,8 +44,19 @@ export default function handler(
   res: NextApiResponse<ResponseData>
 ) {
   if (req.method === 'POST') {
-    const csvData: Skit[] = req.body;
-    const skitBlocks = createSkitBlocks(csvData);
+    const { data } = req.body;
+    const skits: Skit[] = data.map((row: string[]) => {
+      const [skitName, ...participants] = row;
+      const skit: Skit = { skitName };
+      participants.forEach((person, index) => {
+        if (person) {
+          skit[`Person ${index + 1}`] = person;
+        }
+      });
+      return skit;
+    });
+
+    const skitBlocks = createSkitBlocks(skits);
     res.status(200).json({ message: 'CSV data received and processed', data: skitBlocks });
   } else {
     res.status(200).json({ message: 'Hello from Next.js!' });
